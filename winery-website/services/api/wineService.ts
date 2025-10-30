@@ -730,7 +730,7 @@ class WineService {
         };
       }
     }
-    
+
     // Server-side: use ApiClient
     return this.apiClient.get<string[]>('/wines/categories?simple=true');
   }
@@ -756,7 +756,7 @@ class WineService {
         };
       }
     }
-    
+
     // Server-side: use ApiClient
     return this.apiClient.get<string[]>('/wines/regions?simple=true');
   }
