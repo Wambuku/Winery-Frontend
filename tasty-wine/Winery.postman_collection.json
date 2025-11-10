@@ -1,0 +1,887 @@
+{
+	"info": {
+		"_postman_id": "22ad94bc-5a1a-41b1-8121-8404adbf3d1a",
+		"name": "Winery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34916290"
+	},
+	"item": [
+		{
+			"name": "Fetch Wines",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4NTA1MzUyLCJpYXQiOjE3NDg1MDUwNTIsImp0aSI6IjdiZjIxMTA1MTIxMTQ5OGZhNzEyOWQxYjVlNDhmYzljIiwidXNlcl9pZCI6MX0.-JttGZglA5BxXWIpv4meEOiGKpG9qKpdIth4KtNgj9c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\r\n//     \"name\": \"Cherry Wine\",\r\n//     \"category\": \"Red\"name\r\n//     \"price\": 50,\r\n//     \"stock\": 10,\r\n//     \"description\": \"A fulfilling Red wine\",\r\n//     \"image_url\": \"\"\r\n\r\n// }\r\n\r\n// {\r\n//     \"name\": \"Chardonnay Reserve\",\r\n//     \"category\": \"White\",\r\n//     \"price\": 75,\r\n//     \"stock\": 25,\r\n//     \"description\": \"A smooth, buttery Chardonnay with hints of vanilla and oak.\",\r\n//     \"image_url\": \"https://example.com/images/chardonnay-reserve.jpg\"\r\n// }\r\n\r\n\r\n// {\r\n//     \"name\": \"Merlot Classic\",\r\n//     \"category\": \"Red\",\r\n//     \"price\": 60,\r\n//     \"stock\": 15,\r\n//     \"description\": \"A classic Merlot with rich berry flavors and a soft finish.\",\r\n//     \"image_url\": \"https://example.com/images/merlot-classic.jpg\"\r\n// }\r\n\r\n// {\r\n//     \"name\": \"Sparkling Rosé\",\r\n//     \"category\": \"Rosé\",\r\n//     \"price\": 90,\r\n//     \"stock\": 8,\r\n//     \"description\": \"A lively sparkling Rosé perfect for celebrations.\",\r\n//     \"image_url\": \"https://example.com/images/sparkling-rose.jpg\"\r\n// }\r\n\r\n// {\r\n//     \"name\": \"Cabernet Sauvignon Premium\",\r\n//     \"category\": \"Red\",\r\n//     \"price\": 120,\r\n//     \"stock\": 5,\r\n//     \"description\": \"Full-bodied Cabernet Sauvignon with deep blackcurrant notes and a long finish.\",\r\n//     \"image_url\": \"https://example.com/images/cabernet-premium.jpg\"\r\n// }\r\n// {\r\n//     \"price\": 150.00,\r\n//     \"stock\": 20\r\n// }\r\n    // {\r\n    //     \"stock\": 100\r\n    // }\r\n\r\n// {\r\n//     \"name\": \"Rose Red\",\r\n//     \"category\": \"Red\",\r\n//     \"price\": 700,\r\n//     \"stock\": 30,\r\n//     \"description\": \"A delightful Rose Red with a balance of sweetness and acidity.\",\r\n//     \"image_url\": \"https://example.com/images/rosered-delight.jpg\"\r\n// }\r\n\r\n{\r\n    \"username\": \"administrator\",\r\n    \"password\": \"Wambuku@01\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/wines/",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"wines",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Wines",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MDc4ODEwLCJpYXQiOjE3NDgwNzg1MTAsImp0aSI6IjgxYzFlMDdmNzYxZjRhNmZhOTc1M2M3NGI5MDkzMjI1IiwidXNlcl9pZCI6Mn0.gt9cIGAT47UPz168O9HYtmWeHgG_LwxwyohCyGHXyRU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name ",
+							"value": "Raven Wine ",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "Red",
+							"type": "text"
+						},
+						{
+							"key": "price ",
+							"value": "2500.0",
+							"type": "text"
+						},
+						{
+							"key": "stock ",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "description ",
+							"value": "Sample Raveer",
+							"type": "text"
+						},
+						{
+							"key": "image ",
+							"type": "file",
+							"src": "/C:/Users/Administrator/Downloads/wq.webp"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/wines/",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"wines",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"administrator\",\r\n    \"password\": \"Wambuku@01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/token/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ3MzI2Mzc2LCJpYXQiOjE3NDczMjYwNzYsImp0aSI6IjQ0ODQ3NGJiMjA0MTRhNDI5Yzg0YTFlNzRhZDVkMmRlIiwidXNlcl9pZCI6MX0.Srbbc8HfsVB1VYPNQBLpfH0_ZZzGB1q0BZ7isR2DBRw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"price\": 150.00,\r\n    \"stock\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/wines/3/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wines",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ3ODMxNzgzLCJpYXQiOjE3NDc4MzE0ODMsImp0aSI6ImU4N2M2Nzg0Y2VmNTRiY2M4ZDY3MDZiZTBhMDUzNTcyIiwidXNlcl9pZCI6MX0.eDQpW1_t1Pw1v3oKW4nCaaDljUi42ulnUvtGxRpGrLg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Cabernet Sauvignon \",\r\n    \"category\": \"Red\",\r\n    \"price\": 1200,\r\n    \"stock\": 5,\r\n    \"description\": \"Full-bodied Cabernet Sauvignon with deep blackcurrant notes and a long finish.\",\r\n    \"image_url\": \"https://example.com/images/cabernet-premium.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/wines/3/",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"wines",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MDc5MDIzLCJpYXQiOjE3NDgwNzg3MjMsImp0aSI6IjY0ZGNkOWRkZTlhOTRkNDI4MzE1YzE5NTZhMTJjOTcwIiwidXNlcl9pZCI6MX0.iWbCacpHuxxqrT3WPwKB30umdrGgvgFgGEYl4aj_Dwg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/wines/16/",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"wines",
+						"16",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/wines/?search=red",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wines",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "red"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/wines/?limit=3&offset=0",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wines",
+						""
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/wines/search/?category=White",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wines",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "White"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sorting",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/wines/?ordering=price",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"wines",
+						""
+					],
+					"query": [
+						{
+							"key": "ordering",
+							"value": "price"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "created_by",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MDgxODIwLCJpYXQiOjE3NDgwODE1MjAsImp0aSI6IjcwNDI5NGIwOTQ2YTRiMWZhNGE3ZTA5Mzc2YWQxODE4IiwidXNlcl9pZCI6MX0.7cJIRwk7MN1xKURaNiLvXnY0aIzaOdi5C4Np2PRGHMU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/my_wines/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"my_wines",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Staff",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MDk3MTQwLCJpYXQiOjE3NDgwOTY4NDAsImp0aSI6IjkwNmI2NDBiMmYxYjRmMmRhOWFiY2Q1YzY0ZDI5ZjRhIiwidXNlcl9pZCI6MX0.8ds0CgkYbguqRcB4mscMAN_tJwmDvNsTGxIWOnfpwNg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/staff/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"staff",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Staff",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MDk3NzIzLCJpYXQiOjE3NDgwOTc0MjMsImp0aSI6IjI0ODUwZjQ1YThlMjQxNDZiMzdjMWYxZjQ3YmI3ZTIxIiwidXNlcl9pZCI6MX0.vZKLV8KUIItL69tr7Nl27z8DJ2uSUgYt4t5JR_nlHQs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"Julz\",\r\n  \"email\": \"newstaff@example.com\",\r\n  \"first_name\": \"New\",\r\n  \"last_name\": \"Staff\",\r\n  \"password\": \"testpassword123\",\r\n  \"profile\": {\r\n    \"phone_number\": \"0712345678\",\r\n    \"id_number\": \"11223344\",\r\n    \"is_active\": true\r\n  }\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/staff/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"staff",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Staff",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MDk5MzQ0LCJpYXQiOjE3NDgwOTkwNDQsImp0aSI6IjFkNDQzMzI4ODNhYzQyNmNhYWI5ZWYzZWIwMDE4ZjhhIiwidXNlcl9pZCI6MX0.w4egAwtKX0XeNs6p2Xq7sE_GtjMT4ryLbHeVjcwlMKI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"first_name\": \"Juliet\",\r\n  \"profile\": {\r\n    \"is_active\": true,\r\n    \"role\": \"manager\"\r\n  }\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/staff/3/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"staff",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search by Role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MTAwMDYwLCJpYXQiOjE3NDgwOTk3NjAsImp0aSI6IjdlMjMyNTlmNmI3MDRjZmE5YWVlYmJjNWZmNDI0ZTMzIiwidXNlcl9pZCI6MX0.BOLVT6FwSNwKbwgW054lW_jMbVNEV7chK3VJR_YB8Zs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/staff/?role=manager",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"staff",
+						""
+					],
+					"query": [
+						{
+							"key": "role",
+							"value": "manager"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Carts Items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MTAwNTc2LCJpYXQiOjE3NDgxMDAyNzYsImp0aSI6IjkwZTRmZGUzZWJlMjQ3MjlhZDgyNjRiNjM1OTQ2NGQyIiwidXNlcl9pZCI6MX0.8bLhMW7VbbexSbb607xjJc3c6Z2ME_6Fv3zCLnDf70g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n\r\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cart/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cart",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add To Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MTAwOTA1LCJpYXQiOjE3NDgxMDA2MDUsImp0aSI6IjZmMGY4MmViNjU2MjRhZDhiYjY0ZGZhNzNjZGYzMWJhIiwidXNlcl9pZCI6MX0.dxVqhwwheSa0ucobmAcllcK9IfcodiTixckLmaJnyZw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"wine\": 5,\r\n  \"quantity\": 2\r\n}\r\n\r\n\r\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cart/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cart",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Checkout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MTAxODI4LCJpYXQiOjE3NDgxMDE1MjgsImp0aSI6ImJjOTliNzk5YmU3NjQ5MDM5OTI2ZDExNjZiNzkxYTE1IiwidXNlcl9pZCI6Mn0.jLrCizM8mrowuiJ1Qsa47cKA-OqQOaKrLeAer_KYRBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/checkout/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"checkout",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Orders",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Mpesa Confirmation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MTc3MTgxLCJpYXQiOjE3NDgxNzY4ODEsImp0aSI6ImI5NzMwNDMxMDZmODQ1YmRiYzFlNjlkMzEwYTFlMmMyIiwidXNlcl9pZCI6Mn0.TIWbMsEdrK34xEBu1oEUCqERrz_hZdzfmZT6zPE7j5w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"order_id\": 5,\r\n  \"amount\": 4000,\r\n  \"phone\": \"0712345678\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/mpesa/confirm/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"mpesa",
+						"confirm",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderHistory",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4NTAwMTg1LCJpYXQiOjE3NDg0OTk4ODUsImp0aSI6IjgyYmYzNDEwZThjMzQyNmE4MjIwZDFiMDNkMzZhN2JhIiwidXNlcl9pZCI6MX0.cHEB3BGm7ir5mJTz9HPEmWf6IKGgc4-gF4NpzXH_Qnc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/orders/history/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders",
+						"history",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Call Back",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4NDMxOTE3LCJpYXQiOjE3NDg0MzE2MTcsImp0aSI6IjgyNzcxOGUxMGEzODRjNTlhNTNkYWI4NWEwNWYxOTA3IiwidXNlcl9pZCI6Mn0.qSB-yDliq2LhsuN3xbVl6fKNl7GGIn5n9lvdPlrCKbY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"MerchantRequestID\": \"b18f-4a07-9aff-d6e1fb096b51193194\",\r\n    \"CheckoutRequestID\": \"ws_CO_28052025131328304704245544\",\r\n    \"ResponseCode\": \"0\",\r\n    \"ResponseDescription\": \"Success. Request accepted for processing\",\r\n    \"CustomerMessage\": \"Success. Request accepted for processing\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/mpesa/callback/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"mpesa",
+						"callback",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
