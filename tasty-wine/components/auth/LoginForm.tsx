@@ -8,20 +8,20 @@ interface LoginFormProps {
 }
 
 interface LoginValues {
-  username: string;
+  email: string;
   password: string;
 }
 
 interface FieldErrors {
-  username?: string;
+  email?: string;
   password?: string;
   form?: string;
 }
 
 function validate(values: LoginValues): FieldErrors {
   const validation: FieldErrors = {};
-  if (!values.username.trim()) {
-    validation.username = "Username is required";
+  if (!values.email.trim()) {
+    validation.email = "Email is required";
   }
 
   if (!values.password) {
@@ -35,7 +35,7 @@ function validate(values: LoginValues): FieldErrors {
 
 export default function LoginForm({ onSuccess }: LoginFormProps) {
   const { login, status, error } = useAuth();
-  const [values, setValues] = useState<LoginValues>({ username: "", password: "" });
+  const [values, setValues] = useState<LoginValues>({ email: "", password: "" });
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -61,7 +61,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
 
     setIsSubmitting(true);
     try {
-      await login({ username: values.username.trim(), password: values.password });
+      await login({ email: values.email.trim(), password: values.password });
       setFieldErrors({});
       onSuccess?.();
     } catch (submitError) {
@@ -76,35 +76,36 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-sm space-y-5 rounded-xl border border-red-200/70 bg-white/95 p-6 shadow-lg shadow-red-900/10 backdrop-blur"
+      className="w-full max-w-sm space-y-5 rounded-xl border border-red-200/70 bg-transparent p-6 shadow-lg shadow-red-900/10 backdrop-blur"
       noValidate
     >
-      <div className="space-y-2">
-        <label htmlFor="username" className="block text-sm font-semibold text-black">
-          Username
-        </label>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          autoComplete="username"
-          value={values.username}
-          onChange={handleChange}
-          className="w-full rounded-lg border border-black/10 px-3 py-2 text-sm text-black shadow-sm focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/40 disabled:bg-black/5"
-          aria-invalid={Boolean(fieldErrors.username)}
-          aria-describedby={fieldErrors.username ? "username-error" : undefined}
-          disabled={isLoading}
-          required
-        />
-        {fieldErrors.username && (
-          <p id="username-error" className="text-xs text-red-600">
-            {fieldErrors.username}
-          </p>
-        )}
-      </div>
+     <div className="space-y-2">
+      <label htmlFor="email" className="block text-sm font-semibold text-white">
+        Email
+      </label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        autoComplete="email"
+        value={values.email}
+        onChange={handleChange}
+        className="w-full rounded-lg border border-black/10 px-3 py-2 text-sm text-black shadow-sm focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/40 disabled:bg-black/5"
+        aria-invalid={Boolean(fieldErrors.email)}
+        aria-describedby={fieldErrors.email ? "email-error" : undefined}
+        disabled={isLoading}
+        required
+      />
+      {fieldErrors.email && (
+        <p id="email-error" className="text-xs text-red-600">
+          {fieldErrors.email}
+        </p>
+      )}
+
+     </div>
 
       <div className="space-y-2">
-        <label htmlFor="password" className="block text-sm font-semibold text-black">
+        <label htmlFor="password" className="block text-sm font-semibold text-white">
           Password
         </label>
         <input
@@ -141,14 +142,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
         {isLoading ? "Signing in..." : "Sign in"}
       </button>
 
-      <div className="rounded-lg border border-black/10 bg-black/80 px-4 py-3 text-xs text-white/90">
-        <p className="font-semibold text-yellow-400">Staff &amp; Admin access</p>
-        <p className="mt-1">
-          Staff accounts cover daily floor operations, while administration users unlock
-          inventory control and analytics. Use your winery email and password issued
-          by HQ to authenticate against the secure token service.
-        </p>
-      </div>
+     
     </form>
   );
 }

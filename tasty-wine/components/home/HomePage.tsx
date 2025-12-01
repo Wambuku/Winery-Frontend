@@ -11,6 +11,8 @@ import WineCarousel from './WineCarousel';
 import FeaturedSection from './FeaturedSection';
 import CategoryGrid from './CategoryGrid';
 import SearchBar from './SearchBar';
+import HighlightsStrip from './HighlightsStrip';
+import EditorialSpotlight from './EditorialSpotlight';
 
 const PairingShowcase = dynamic(() => import('../education/PairingShowcase'), {
   ssr: false,
@@ -53,27 +55,25 @@ export default function HomePage() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-900">
-        <div className="text-xl text-white">Loading...</div>
-      </div>
-    );
-  }
-
+ 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-black">
-      {/* Hero Section */}
+     
+      {/* Classic Hero + Search */}
       <HeroSection />
-
-      {/* Search Bar */}
       <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <SearchBar />
+      </div>
+
+      {/* Highlights */}
+      <div className="py-4">
+        <HighlightsStrip />
       </div>
 
       {/* Featured Wine Carousel */}
       <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <h2 className="mb-6 text-2xl font-bold text-white sm:text-3xl">Featured Collection</h2>
+        
         <WineCarousel wines={featuredWines} />
       </section>
 
@@ -88,10 +88,7 @@ export default function HomePage() {
         <FeaturedSection title="Trending Now" wines={trendingWines} />
       </section>
 
-      {/* New Arrivals */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <FeaturedSection title="New Arrivals" wines={newArrivals} />
-      </section>
+      
 
       {/* Pairings */}
       <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
@@ -102,6 +99,9 @@ export default function HomePage() {
       <section className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <TastingReviews />
       </section>
+
+      {/* Editorial Spotlight */}
+      <EditorialSpotlight />
 
       {/* Footer CTA */}
       <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8">

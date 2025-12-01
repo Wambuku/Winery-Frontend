@@ -4,3 +4,6 @@ export { default as WineCarousel } from './WineCarousel';
 export { default as SearchBar } from './SearchBar';
 export { default as CategoryGrid } from './CategoryGrid';
 export { default as FeaturedSection } from './FeaturedSection';
+export { default as HighlightsStrip } from './HighlightsStrip';
+export { default as EditorialSpotlight } from './EditorialSpotlight';
+export { default as ImmersiveLanding } from './ImmersiveLanding';

@@ -1,90 +1,163 @@
 import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import type { WineRecommendation } from '../../lib/types/recommendation';
+
+const palette = {
+  gold: '#d8a424',
+  text: '#f6f2e7',
+  muted: '#c9c3b7',
+  dark: '#060506',
+  panel: '#0d0c0f',
+};
+
+// Static showcase data to avoid API usage for now.
+const featuredProducts = [
+  {
+    id: 'reserve-150',
+    name: 'Pope Valley Winery',
+    price: 150,
+    imageUrl: '/assets/wine-5.jpg',
+  },
+  {
+    id: 'reserve-140',
+    name: 'Pope Valley Winery',
+    price: 140,
+    imageUrl: '/assets/wine-6.jpg',
+  },
+  {
+    id: 'reserve-158',
+    name: 'Pope Valley Winery',
+    price: 158,
+    imageUrl: '/assets/wine-7.jpg',
+  },
+];
+
+const featuredEvent = {
+  title: '10th Annual Barrel Tasting',
+  date: '15 Sept',
+  copy:
+    'Join us for a decadent evening of reserve pours, barrel samplings, and chef-paired small bites from the valley.',
+  imageUrl: '/assets/glass-pour.jpg',
+};
 
 interface FeaturedSectionProps {
   title: string;
-  wines: WineRecommendation[];
+  wines: unknown[];
 }
 
-export default function FeaturedSection({ title, wines }: FeaturedSectionProps) {
+export default function FeaturedSection({ title: _title, wines: _wines }: FeaturedSectionProps) {
   const router = useRouter();
-
-  if (wines.length === 0) return null;
-
-  const handleWineClick = (wineId: string) => {
-    router.push(`/wines/${wineId}`);
-  };
-
-  const getBadgeLabel = (reason: WineRecommendation['reason']) => {
-    switch (reason) {
-      case 'trending':
-        return '🔥 Trending';
-      case 'new_arrival':
-        return '✨ New';
-      case 'popular':
-        return '⭐ Popular';
-      default:
-        return null;
-    }
-  };
+  const cards = featuredProducts;
 
   return (
-    <div>
-      <h2 className="mb-6 text-2xl font-bold text-white sm:text-3xl">{title}</h2>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {wines.map((wine) => {
-          const badgeLabel = getBadgeLabel(wine.reason);
-          return (
-            <button
-              type="button"
-              key={wine.wineId}
-              onClick={() => handleWineClick(wine.wineId)}
-              className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 p-5 text-left transition-all hover:border-red-500 hover:shadow-xl hover:shadow-red-500/20 sm:p-6"
-            >
-              {wine.imageUrl ? (
-                <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg">
-                  <Image
-                    src={wine.imageUrl}
-                    alt={wine.wineName}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                  />
-                </div>
-              ) : (
-                <div className="mb-4 flex h-48 w-full items-center justify-center rounded-lg bg-slate-900/70 text-2xl font-semibold text-slate-300">
-                  {wine.wineName.slice(0, 2)}
-                </div>
-              )}
+    <div className="relative overflow-hidden rounded-[32px] border border-yellow-900/30 bg-[color:var(--featured-bg)] px-4 py-12 shadow-2xl shadow-black/60 sm:px-10">
+      <style jsx>{`
+        :global(:root) {
+          --featured-bg: ${palette.dark};
+          --featured-panel: ${palette.panel};
+          --featured-gold: ${palette.gold};
+          --featured-text: ${palette.text};
+          --featured-muted: ${palette.muted};
+        }
+      `}</style>
 
-              {badgeLabel && (
-                <div className="absolute right-4 top-4 rounded-full bg-red-500/90 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-                  {badgeLabel}
-                </div>
-              )}
+      <div className="text-center text-[color:var(--featured-text)]">
+        <p className="text-sm uppercase tracking-[0.4em] text-[color:var(--featured-muted)]">Amazing</p>
+        <h2 className="mt-2 text-3xl font-serif font-semibold uppercase tracking-[0.1em] text-[color:var(--featured-gold)] sm:text-4xl">
+          Offer
+        </h2>
+      </div>
 
-              <h3 className="text-lg font-semibold text-white sm:text-xl">{wine.wineName}</h3>
-              <p className="mt-2 text-sm text-slate-400">
-                {wine.type}
-                {wine.region ? ` • ${wine.region}` : ''}
-              </p>
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {cards.map((wine, idx) => (
+          <button
+            type="button"
+            key={wine.id}
+            onClick={() => router.push(`/wines/${wine.id}`)}
+            className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border px-4 pb-5 pt-4 text-left shadow-[0_18px_38px_rgba(0,0,0,0.35)] transition-all ${
+              idx === 1
+                ? 'border-[color:var(--featured-gold)] bg-[color:var(--featured-panel)]'
+                : 'border-white/10 bg-[color:var(--featured-panel)] hover:border-[color:var(--featured-gold)]'
+            }`}
+          >
+            <div className="relative mb-4 h-64 w-full overflow-hidden rounded-lg">
+              <Image
+                src={wine.imageUrl}
+                alt={wine.name}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+              />
+            </div>
 
-              <div className="mt-4 flex items-center justify-between gap-3">
-                <span className="text-xl font-bold text-red-400 sm:text-2xl">
-                  KES {wine.price.toLocaleString()}
-                </span>
-                <div className="flex items-center gap-1 text-yellow-400">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  <span className="text-sm font-semibold">{wine.score.toFixed(1)}</span>
-                </div>
-              </div>
-            </button>
-          );
-        })}
+            <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--featured-muted)]">
+              Pope Valley Winery
+            </p>
+            <h3 className="mt-1 text-lg font-semibold text-[color:var(--featured-text)] sm:text-xl">
+              {wine.name}
+            </h3>
+            <p className="mt-2 text-sm font-black text-[color:var(--featured-gold)]">
+              ${wine.price.toFixed(2)}
+            </p>
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-8 flex items-center justify-center gap-2">
+        {[0, 1, 2].map((dot) => (
+          <span
+            key={dot}
+            className={`h-2.5 w-2.5 rounded-full ${
+              dot === 1 ? 'bg-[color:var(--featured-gold)]' : 'bg-white/25'
+            }`}
+          />
+        ))}
+      </div>
+
+      <div className="mt-12 text-center text-[color:var(--featured-text)]">
+        <p className="text-sm uppercase tracking-[0.4em] text-[color:var(--featured-muted)]">Featured</p>
+        <h3 className="mt-2 text-2xl font-serif font-semibold uppercase tracking-[0.12em] text-[color:var(--featured-gold)] sm:text-3xl">
+          Events
+        </h3>
+      </div>
+
+      <div className="relative mt-8 grid gap-6 rounded-2xl border border-white/10 bg-[color:var(--featured-panel)] p-6 shadow-[0_18px_38px_rgba(0,0,0,0.35)] lg:grid-cols-[1.15fr,1fr]">
+        <div className="absolute left-4 top-1/2 hidden -translate-y-1/2 md:block">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--featured-gold)] text-[color:var(--featured-gold)]">
+            ‹
+          </div>
+        </div>
+        <div className="absolute right-4 top-1/2 hidden -translate-y-1/2 md:block">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--featured-gold)] text-[color:var(--featured-gold)]">
+            ›
+          </div>
+        </div>
+
+        <div className="relative overflow-hidden rounded-xl">
+          <Image
+            src={featuredEvent.imageUrl}
+            alt={featuredEvent.title}
+            width={720}
+            height={480}
+            className="h-full w-full object-cover"
+          />
+        </div>
+
+        <div className="flex flex-col justify-center gap-3 text-[color:var(--featured-text)]">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--featured-muted)]">
+              {featuredEvent.date}
+            </p>
+            <h4 className="mt-2 text-xl font-semibold sm:text-2xl">{featuredEvent.title}</h4>
+          </div>
+          <p className="text-sm leading-relaxed text-[color:var(--featured-muted)]">{featuredEvent.copy}</p>
+          <button
+            type="button"
+            className="mt-2 w-fit rounded-full border border-[color:var(--featured-gold)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--featured-gold)] transition hover:-translate-y-0.5 hover:bg-[color:var(--featured-gold)] hover:text-black"
+          >
+            Read More
+          </button>
+        </div>
       </div>
     </div>
   );

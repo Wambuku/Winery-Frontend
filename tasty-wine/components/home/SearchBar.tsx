@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchWines } from '../../lib/api/wines';
 import { trackSearch } from '../../lib/api/recommendations';
@@ -13,10 +13,31 @@ export default function SearchBar() {
   const [results, setResults] = useState<Wine[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [lastSearchTerm, setLastSearchTerm] = useState('');
+  const trendingSearches = ['Volcanic reds', 'Organic whites', 'Sparkling brunch', 'Cellar Club picks'];
+  const searchWines = useCallback(async (term?: string) => {
+    const effectiveTerm = term ?? query;
+    if (!effectiveTerm) return;
+    setLoading(true);
+    try {
+      const response = await fetchWines({ search: effectiveTerm, limit: 5 });
+      setResults(response.data);
+      setShowResults(true);
+      setLastSearchTerm(effectiveTerm);
+
+      if (effectiveTerm.length >= 3) {
+        trackSearch(effectiveTerm).catch(() => {});
+      }
+    } catch (error) {
+      console.error('Search failed:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [query]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (query.length >= 2) {
+      if (query.length >= 2 && query !== lastSearchTerm) {
         searchWines();
       } else {
         setResults([]);
@@ -25,30 +46,17 @@ export default function SearchBar() {
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [query]);
-
-  const searchWines = async () => {
-    setLoading(true);
-    try {
-      const response = await fetchWines({ search: query, limit: 5 });
-      setResults(response.data);
-      setShowResults(true);
-      
-      // Track search for recommendations
-      if (query.length >= 3) {
-        trackSearch(query).catch(() => {});
-      }
-    } catch (error) {
-      console.error('Search failed:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [query, lastSearchTerm, searchWines]);
 
   const handleWineClick = (wineId: string) => {
     setShowResults(false);
     setQuery('');
     router.push(`/wines/${wineId}`);
+  };
+
+  const handleQuickSearch = (term: string) => {
+    setQuery(term);
+    searchWines(term);
   };
 
   return (
@@ -82,6 +90,19 @@ export default function SearchBar() {
             <div className="h-5 w-5 animate-spin rounded-full border-2 border-slate-700 border-t-red-500" />
           </div>
         )}
+      </div>
+      <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-slate-400">
+        <span className="uppercase tracking-[0.3em] text-slate-500">Trending</span>
+        {trendingSearches.map((term) => (
+          <button
+            key={term}
+            type="button"
+            onClick={() => handleQuickSearch(term)}
+            className="rounded-full border border-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80 transition hover:border-red-400 hover:text-red-200"
+          >
+            {term}
+          </button>
+        ))}
       </div>
 
       {/* Search Results Dropdown */}

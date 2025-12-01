@@ -33,7 +33,7 @@ export interface AuthTokens {
 }
 
 export interface LoginCredentials {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -202,7 +202,7 @@ async function postJson<T>(path: string, payload: Record<string, unknown>): Prom
 
 async function requestTokens(credentials: LoginCredentials): Promise<AuthTokens> {
   const payload = {
-    username: credentials.username,
+    email: credentials.email,
     password: credentials.password,
   };
 

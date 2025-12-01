@@ -1,52 +1,70 @@
 'use client';
 
 import React from 'react';
+import { FaWineBottle } from 'react-icons/fa6';
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-red-900/50 to-purple-900/50" />
-      
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pb-20 pt-24 text-center sm:px-6 sm:pb-28 sm:pt-28 lg:flex-row lg:items-end lg:justify-between lg:gap-20 lg:text-left">
-        <div className="max-w-3xl space-y-6">
-          <h1 className="text-4xl font-black leading-tight text-white sm:text-6xl lg:text-7xl">
-            <span className="block">Premium Wine</span>
-            <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
-              Collection
-            </span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-base text-slate-200 sm:text-lg lg:mx-0">
-            Discover exceptional wines from renowned vineyards worldwide. Each bottle is carefully
-            selected to bring you the finest flavors and experiences.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:justify-start">
-            <button className="rounded-full bg-red-600 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-all hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400 sm:px-8 sm:py-4 sm:text-base">
-              Explore Collection
-            </button>
-            <button className="rounded-full border-2 border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white backdrop-blur transition-all hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60 sm:px-8 sm:py-4 sm:text-base">
-              Learn More
-            </button>
+    <section className="relative isolate overflow-hidden px-4 pb-14 pt-10 sm:px-6 lg:px-8 lg:pt-16">
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-950 to-black" />
+
+      <div className="relative mx-auto max-w-12xl">
+        <div className="relative min-h-[70vh] overflow-hidden rounded-[28px] border border-red-900/30 bg-gradient-to-b from-[#0e0d0e] via-[#121016] to-[#0c0b0c] shadow-2xl shadow-red-900/30">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(248,113,113,0.14),transparent_32%),radial-gradient(circle_at_82%_12%,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_50%_80%,rgba(127,29,29,0.18),transparent_36%)] opacity-80" />
+          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.12)_0,rgba(255,255,255,0.06)_22%,transparent_22%),linear-gradient(300deg,rgba(248,113,113,0.14)_10%,transparent_30%,rgba(127,29,29,0.12)_38%)] mix-blend-overlay opacity-30" />
+
+          <div className="relative flex h-full flex-col px-6 pb-12 pt-8 sm:px-12 sm:pb-16 sm:pt-12">
+            <div className="flex items-start justify-between text-red-100">
+              <p className="max-w-xl text-sm font-serif text-red-100/90 sm:text-base">
+                History and future from the heart of the Teramo hills
+              </p>
+              <div className="mt-1 hidden flex-col gap-1 sm:flex">
+                <span className="text-xl font-semibold text-red-200">
+                  <FaWineBottle />
+                </span>
+              </div>
+            </div>
+
+            <div className="relative flex flex-1 flex-col items-center justify-center gap-6">
+              <div className="pointer-events-none absolute -left-10 top-1/3 hidden h-40 w-40 -rotate-6 rounded-full border-2 border-red-900/60 bg-[radial-gradient(circle_at_40%_40%,rgba(255,255,255,0.08),transparent_55%)] shadow-[10px_14px_0_rgba(127,29,29,0.25)] sm:block" />
+              <div className="pointer-events-none absolute -right-10 top-1/3 hidden h-40 w-40 rotate-9 rounded-full border-2 border-red-900/60 bg-[radial-gradient(circle_at_60%_50%,rgba(255,255,255,0.08),transparent_55%)] shadow-[-10px_14px_0_rgba(127,29,29,0.25)] sm:block" />
+              <div className="pointer-events-none absolute left-10 bottom-14 hidden h-20 w-32 rotate-3 rounded-full border-2 border-red-800/70 bg-[radial-gradient(circle_at_40%_40%,rgba(248,113,113,0.2),transparent_60%)] shadow-[6px_10px_0_rgba(127,29,29,0.25)] lg:block" />
+              <div className="pointer-events-none absolute right-12 bottom-12 hidden h-20 w-20 -rotate-6 rounded-full border-2 border-red-800/70 bg-[radial-gradient(circle_at_50%_50%,rgba(248,113,113,0.2),transparent_58%)] shadow-[-6px_10px_0_rgba(127,29,29,0.25)] lg:block" />
+
+              <div className="text-center">
+                <h1 className="text-4xl font-black uppercase tracking-[0.08em] text-red-100 sm:text-6xl lg:text-7xl">
+                    Crafted to Perfection.                
+                </h1>
+                <p className="mt-1 text-lg font-serif uppercase tracking-[0.2em] text-red-200/90 sm:text-xl">
+                  Collection
+                </p>
+              </div>
+
+              <div className="relative flex items-center justify-center">
+                <span className="absolute -left-10 top-5 hidden rotate-[-8deg] text-[11px] uppercase tracking-[0.2em] text-red-200 sm:block">
+                  Heritage
+                </span>
+                <span className="absolute -right-10 top-5 hidden rotate-[8deg] text-[11px] uppercase tracking-[0.2em] text-red-200 sm:block">
+                  Craft
+                </span>
+                <img
+                  src="/assets/wine-1.jpg"
+                  alt="Signature bottle"
+                  className="w-[180px] rotate-[-12deg] drop-shadow-[0_30px_45px_rgba(0,0,0,0.35)] sm:w-[220px] lg:w-[260px]"
+                />
+              </div>
+
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-lg font-black uppercase tracking-[0.25em] text-red-100 sm:text-2xl">
+                  W I N E R Y
+                </p>
+                <p className="text-xs uppercase tracking-[0.28em] text-red-200/80 sm:text-sm">
+                  A land, its wines
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Decorative Elements */}
-        <div className="mt-16 grid w-full gap-6 text-left sm:max-w-md sm:text-center lg:mt-0 lg:text-left">
-          <div className="rounded-3xl border border-white/10 bg-black/40 px-6 py-6 text-white backdrop-blur md:px-8 md:py-8">
-            <p className="text-xs uppercase tracking-[0.4rem] text-yellow-300">Sommelier tips</p>
-            <p className="mt-3 text-sm text-white/70 sm:text-base">
-              Sip the season&apos;s best pairings curated for sunset dinners, rooftop celebrations, and fireside nights.
-            </p>
-          </div>
-          <div className="rounded-3xl border border-white/10 bg-black/40 px-6 py-6 text-white backdrop-blur md:px-8 md:py-8">
-            <p className="text-xs uppercase tracking-[0.4rem] text-yellow-300">Express delivery</p>
-            <p className="mt-3 text-sm text-white/70 sm:text-base">
-              Same-day delivery across Nairobi and next-day shipping nationwide for members of the Cellar Club.
-            </p>
-          </div>
-        </div>
-
-        <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-red-500/20 blur-3xl sm:-left-40 sm:h-80 sm:w-80 lg:-left-56 lg:h-96 lg:w-96" />
-        <div className="pointer-events-none absolute -right-32 bottom-10 h-72 w-72 rounded-full bg-purple-500/20 blur-3xl sm:-right-40 sm:h-80 sm:w-80 lg:-right-56 lg:h-96 lg:w-96" />
       </div>
     </section>
   );
