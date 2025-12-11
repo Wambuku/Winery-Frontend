@@ -8,20 +8,20 @@ interface LoginFormProps {
 }
 
 interface LoginValues {
-  email: string;
+  identifier: string;
   password: string;
 }
 
 interface FieldErrors {
-  email?: string;
+  identifier?: string;
   password?: string;
   form?: string;
 }
 
 function validate(values: LoginValues): FieldErrors {
   const validation: FieldErrors = {};
-  if (!values.email.trim()) {
-    validation.email = "Email is required";
+  if (!values.identifier.trim()) {
+    validation.identifier = "Email or username is required";
   }
 
   if (!values.password) {
@@ -35,7 +35,7 @@ function validate(values: LoginValues): FieldErrors {
 
 export default function LoginForm({ onSuccess }: LoginFormProps) {
   const { login, status, error } = useAuth();
-  const [values, setValues] = useState<LoginValues>({ email: "", password: "" });
+  const [values, setValues] = useState<LoginValues>({ identifier: "", password: "" });
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -61,7 +61,8 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
 
     setIsSubmitting(true);
     try {
-      await login({ email: values.email.trim(), password: values.password });
+      const identifier = values.identifier.trim();
+      await login({ email: identifier, username: identifier, password: values.password });
       setFieldErrors({});
       onSuccess?.();
     } catch (submitError) {
@@ -80,25 +81,25 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
       noValidate
     >
      <div className="space-y-2">
-      <label htmlFor="email" className="block text-sm font-semibold text-white">
-        Email
+      <label htmlFor="identifier" className="block text-sm font-semibold text-white">
+        Email or Username
       </label>
       <input
-        id="email"
-        name="email"
-        type="email"
-        autoComplete="email"
-        value={values.email}
+        id="identifier"
+        name="identifier"
+        type="text"
+        autoComplete="username"
+        value={values.identifier}
         onChange={handleChange}
         className="w-full rounded-lg border border-black/10 px-3 py-2 text-sm text-black shadow-sm focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/40 disabled:bg-black/5"
-        aria-invalid={Boolean(fieldErrors.email)}
-        aria-describedby={fieldErrors.email ? "email-error" : undefined}
+        aria-invalid={Boolean(fieldErrors.identifier)}
+        aria-describedby={fieldErrors.identifier ? "identifier-error" : undefined}
         disabled={isLoading}
         required
       />
-      {fieldErrors.email && (
-        <p id="email-error" className="text-xs text-red-600">
-          {fieldErrors.email}
+      {fieldErrors.identifier && (
+        <p id="identifier-error" className="text-xs text-red-600">
+          {fieldErrors.identifier}
         </p>
       )}
 

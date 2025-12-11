@@ -14,7 +14,15 @@ export default function WineCarousel({ wines, intervalMs = 6000, onSelectWine }:
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    if (wines.length <= 1) return undefined;
+    if (wines.length === 0) {
+      setActiveIndex(0);
+      return;
+    }
+    setActiveIndex((index) => Math.min(index, Math.max(wines.length - 1, 0)));
+  }, [wines.length]);
+
+  useEffect(() => {
+    if (wines.length <= 1) return;
 
     const timer = setInterval(() => {
       setActiveIndex((index) => (index + 1) % wines.length);
@@ -25,8 +33,12 @@ export default function WineCarousel({ wines, intervalMs = 6000, onSelectWine }:
     };
   }, [wines.length, intervalMs]);
 
-  const activeWine = wines[activeIndex];
+  if (wines.length === 0) {
+    return null;
+  }
 
+  const safeIndex = Math.min(activeIndex, Math.max(wines.length - 1, 0));
+  const activeWine = wines[safeIndex];
   const handleSelect = useCallback(
     (index: number) => {
       setActiveIndex(index);
@@ -36,10 +48,6 @@ export default function WineCarousel({ wines, intervalMs = 6000, onSelectWine }:
   );
 
   const indicatorLabel = useMemo(() => `${activeIndex + 1} / ${wines.length}`, [activeIndex, wines.length]);
-
-  if (wines.length === 0) {
-    return null;
-  }
 
   return (
     <section className="relative overflow-hidden rounded-3xl border border-red-500/50 bg-gradient-to-br from-black via-[#2b0909] to-red-900 text-white shadow-2xl shadow-red-900/30">

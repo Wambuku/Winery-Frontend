@@ -33,7 +33,8 @@ export interface AuthTokens {
 }
 
 export interface LoginCredentials {
-  email: string;
+  email?: string;
+  username?: string;
   password: string;
 }
 
@@ -201,8 +202,11 @@ async function postJson<T>(path: string, payload: Record<string, unknown>): Prom
 }
 
 async function requestTokens(credentials: LoginCredentials): Promise<AuthTokens> {
+  const identifier = credentials.username ?? credentials.email ?? "";
   const payload = {
-    email: credentials.email,
+    // Some backends expect "username" while others accept "email"; send both to be compatible.
+    email: credentials.email ?? identifier,
+    username: identifier,
     password: credentials.password,
   };
 

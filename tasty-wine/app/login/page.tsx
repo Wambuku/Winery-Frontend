@@ -1,7 +1,27 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
 import { LoginForm, RegisterForm } from "../../components/auth";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const { user, status } = useAuth();
+
+  useEffect(() => {
+    if (status !== "authenticated" || !user) return;
+    const roles = user.roles?.map((role) => role.toLowerCase()) ?? [];
+    const isAdmin =
+      roles.includes("admin") ||
+      roles.includes("staff") ||
+      (user.name ? user.name.toLowerCase().includes("admin") : false) ||
+      (user.email ? user.email.toLowerCase().includes("admin") : false);
+
+    router.replace(isAdmin ? "/admin" : "/");
+  }, [router, status, user]);
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#0b0812] via-[#1b0c17] to-[#240c17] text-white">
       <div className="pointer-events-none absolute inset-0">
